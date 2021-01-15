@@ -60,7 +60,7 @@ function Form() {
   }, [posts]);
 
   return (
-    <StyledForm onSubmit={(e) => e.preventDefault()}>
+    <StyledForm onSubmit={(e) => createPost(newPost, e)}>
       <label htmlFor="title">
         Title
         <input
@@ -101,21 +101,23 @@ function Form() {
         />
       </label>
 
-      <label htmlFor="file">
+      <label htmlFor="url">
         File
         <input
-          id="file"
-          type="file"
+          id="url"
+          type="url"
+          multiple={false}
           value={newPost.selectedFile}
           onChange={(e) =>
-            setNewPost({ ...newPost, selectedFile: e.target.value })
+            setNewPost({
+              ...newPost,
+              selectedFile: e.target.value,
+            })
           }
         />
       </label>
 
-      <button type="submit" onClick={() => createPost(newPost)}>
-        Create
-      </button>
+      <button type="submit">Create</button>
     </StyledForm>
   );
 }

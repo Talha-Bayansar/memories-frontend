@@ -15,7 +15,7 @@ function Posts() {
   return (
     <StyledPosts>
       {posts.length !== 0 ? (
-        posts.map((p) => <Post post={p} />)
+        posts.map((p) => <Post key={p._id} post={p} />)
       ) : (
         <span>There are no posts available at the moment</span>
       )}

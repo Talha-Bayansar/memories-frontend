@@ -19,7 +19,8 @@ export function PostProvider(props) {
     setPosts(body);
   };
 
-  const createPost = async (post) => {
+  const createPost = async (post, e) => {
+    e.preventDefault();
     console.log(post);
     const fetchOptions = {
       method: "POST",
