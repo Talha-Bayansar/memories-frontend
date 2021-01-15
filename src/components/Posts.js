@@ -7,6 +7,7 @@ const StyledPosts = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
   margin-right: 1rem;
 `;
 

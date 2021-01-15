@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { usePostContext } from "../contexts/post_context";
 
 const StyledPost = styled.div`
   display: flex;
@@ -46,16 +47,11 @@ const StyledPost = styled.div`
       width: 100%;
       border-radius: 10px 10px 0 0;
     }
-
-    &::after {
-      content: ${(props) => props};
-    }
   }
 
   & > .post_data {
     display: flex;
     flex-direction: column;
-    height: 50%;
     padding: 0.5rem 1rem;
 
     & > .post_title {
@@ -85,7 +81,7 @@ const StyledPost = styled.div`
       align-items: center;
       border: none;
       background-color: unset;
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: bold;
       text-transform: uppercase;
     }
@@ -102,6 +98,7 @@ const StyledPost = styled.div`
 
 function Post(props) {
   const { post } = props;
+  const { deletePost } = usePostContext();
   return (
     <StyledPost url={post.selectedFile}>
       <div className="post_img">
@@ -119,7 +116,7 @@ function Post(props) {
         <button className="like post_button">
           <ThumbUpAltIcon /> Like {post.likeCount}
         </button>
-        <button className="delete post_button">
+        <button onClick={() => deletePost(post)} className="delete post_button">
           <DeleteIcon /> Delete
         </button>
       </div>

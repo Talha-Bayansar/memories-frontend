@@ -38,15 +38,33 @@ export function PostProvider(props) {
     setPosts([...posts, body]);
   };
 
+  const deletePost = async (post) => {
+    const fetchOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(post),
+    };
+    const response = await fetch(
+      `${process.env.REACT_APP_URL}/posts`,
+      fetchOptions
+    );
+    const body = await response.json();
+    console.log(body);
+    setPosts(body);
+  };
+
   useEffect(() => {
     getPosts();
     console.log(posts);
   }, []);
 
-  const api = useMemo(() => ({ posts, setPosts, createPost }), [
+  const api = useMemo(() => ({ posts, setPosts, createPost, deletePost }), [
     posts,
     setPosts,
     createPost,
+    deletePost,
   ]);
 
   return (
