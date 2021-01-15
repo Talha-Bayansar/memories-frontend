@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const StyledPost = styled.div`
   display: flex;
@@ -51,22 +53,49 @@ const StyledPost = styled.div`
   }
 
   & > .post_data {
+    display: flex;
+    flex-direction: column;
     height: 50%;
     padding: 0.5rem 1rem;
 
     & > .post_title {
       text-transform: capitalize;
-    }
-
-    & > .post_creator {
+      margin: 0.75rem 0;
     }
 
     & > .post_message {
+      overflow: scroll;
+      font-size: 0.75rem;
     }
 
     & > .post_tags {
       color: grey;
       font-size: 0.75rem;
+    }
+  }
+  & > .post_buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    & > .post_button {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      border: none;
+      background-color: unset;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    & > .like {
+      color: #04a1ff;
+    }
+
+    & > .delete {
+      color: #db0000;
     }
   }
 `;
@@ -85,6 +114,14 @@ function Post(props) {
         <span className="post_tags">{post.tags}</span>
         <h3 className="post_title">{post.title}</h3>
         <p className="post_message">{post.message}</p>
+      </div>
+      <div className="post_buttons">
+        <button className="like post_button">
+          <ThumbUpAltIcon /> Like {post.likeCount}
+        </button>
+        <button className="delete post_button">
+          <DeleteIcon /> Delete
+        </button>
       </div>
     </StyledPost>
   );
