@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { usePostContext } from "../contexts/post_context";
+import CloseIcon from "@material-ui/icons/Close";
 
 const StyledForm = styled.form`
   display: flex;
@@ -51,6 +52,25 @@ const StyledForm = styled.form`
   }
 `;
 
+const StyledCloseIcon = styled(CloseIcon)`
+  display: none !important;
+  color: #db0000;
+  cursor: pointer;
+
+  @media screen and (max-width: 500px) {
+    display: block !important;
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+
+    &:hover,
+    &:active {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+    }
+  }
+`;
+
 function Form() {
   const [newPost, setNewPost] = useState({
     title: "",
@@ -65,6 +85,8 @@ function Form() {
     postToEdit,
     setPostToEdit,
     updatePost,
+    visibility,
+    setVisibility,
   } = usePostContext();
 
   const clear = (e) => {
@@ -96,11 +118,12 @@ function Form() {
 
   return (
     <StyledForm
-      visibility={true}
+      visibility={visibility}
       onSubmit={(e) =>
         postToEdit === null ? createPost(newPost, e) : updatePost(newPost, e)
       }
     >
+      <StyledCloseIcon fontSize="large" onClick={() => setVisibility(false)} />
       <label htmlFor="title">
         Title
         <input

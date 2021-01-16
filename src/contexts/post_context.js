@@ -11,6 +11,7 @@ const PostContext = createContext();
 export function PostProvider(props) {
   const [posts, setPosts] = useState([]);
   const [postToEdit, setPostToEdit] = useState(null);
+  const [visibility, setVisibility] = useState(false);
 
   const getPosts = async () => {
     const response = await fetch(`${process.env.REACT_APP_URL}/posts`);
@@ -106,6 +107,8 @@ export function PostProvider(props) {
       updatePost,
       deletePost,
       like,
+      visibility,
+      setVisibility,
     }),
     [
       posts,
@@ -116,6 +119,8 @@ export function PostProvider(props) {
       updatePost,
       deletePost,
       like,
+      visibility,
+      setVisibility,
     ]
   );
 
