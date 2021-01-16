@@ -7,9 +7,8 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   border: 1px solid grey;
-  width: 30%;
   height: fit-content;
-  max-width: 300px;
+  width: 300px;
   padding: 1rem;
 
   & > label {
