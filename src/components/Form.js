@@ -37,6 +37,18 @@ const StyledForm = styled.form`
     margin: 0.5rem 0;
     padding: 0.25rem;
   }
+
+  @media screen and (max-width: 500px) {
+    position: fixed;
+    top: 0;
+    display: ${(props) => (props.visibility ? "flex" : "none")};
+    width: 100vw;
+    height: 100vh;
+    max-width: unset;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 7rem;
+    color: white;
+  }
 `;
 
 function Form() {
@@ -84,6 +96,7 @@ function Form() {
 
   return (
     <StyledForm
+      visibility={true}
       onSubmit={(e) =>
         postToEdit === null ? createPost(newPost, e) : updatePost(newPost, e)
       }
