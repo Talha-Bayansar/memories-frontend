@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/memories-frontend/static/css/main.1594c482.chunk.css",
-    "main.js": "/memories-frontend/static/js/main.6b6ee368.chunk.js",
-    "main.js.map": "/memories-frontend/static/js/main.6b6ee368.chunk.js.map",
+    "main.js": "/memories-frontend/static/js/main.b1ee16f2.chunk.js",
+    "main.js.map": "/memories-frontend/static/js/main.b1ee16f2.chunk.js.map",
     "runtime-main.js": "/memories-frontend/static/js/runtime-main.ba0ef65d.js",
     "runtime-main.js.map": "/memories-frontend/static/js/runtime-main.ba0ef65d.js.map",
-    "static/js/2.a9a5dfe4.chunk.js": "/memories-frontend/static/js/2.a9a5dfe4.chunk.js",
-    "static/js/2.a9a5dfe4.chunk.js.map": "/memories-frontend/static/js/2.a9a5dfe4.chunk.js.map",
+    "static/js/2.f6eb6f7b.chunk.js": "/memories-frontend/static/js/2.f6eb6f7b.chunk.js",
+    "static/js/2.f6eb6f7b.chunk.js.map": "/memories-frontend/static/js/2.f6eb6f7b.chunk.js.map",
     "static/js/3.b9056ce9.chunk.js": "/memories-frontend/static/js/3.b9056ce9.chunk.js",
     "static/js/3.b9056ce9.chunk.js.map": "/memories-frontend/static/js/3.b9056ce9.chunk.js.map",
     "index.html": "/memories-frontend/index.html",
     "static/css/main.1594c482.chunk.css.map": "/memories-frontend/static/css/main.1594c482.chunk.css.map",
-    "static/js/2.a9a5dfe4.chunk.js.LICENSE.txt": "/memories-frontend/static/js/2.a9a5dfe4.chunk.js.LICENSE.txt"
+    "static/js/2.f6eb6f7b.chunk.js.LICENSE.txt": "/memories-frontend/static/js/2.f6eb6f7b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ba0ef65d.js",
-    "static/js/2.a9a5dfe4.chunk.js",
+    "static/js/2.f6eb6f7b.chunk.js",
     "static/css/main.1594c482.chunk.css",
-    "static/js/main.6b6ee368.chunk.js"
+    "static/js/main.b1ee16f2.chunk.js"
   ]
 }
