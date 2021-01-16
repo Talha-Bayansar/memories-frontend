@@ -216,12 +216,12 @@ function Form() {
             className="file"
             type="file"
             value={newPost.selectedFile}
-            onChange={(e) =>
+            onChange={(e) => {
               setNewPost({
                 ...newPost,
-                selectedFile: e.target.value,
-              })
-            }
+                selectedFile: window.URL.createObjectURL(e.target.files[0]),
+              });
+            }}
             accept="image/*"
             capture
           />
