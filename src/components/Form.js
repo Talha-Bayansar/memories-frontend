@@ -17,15 +17,21 @@ const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
 
-    & > input {
-      padding: 5px 5px;
+    & > input,
+    & > textarea {
+      padding: 8px 5px;
       border-radius: 5px;
       border: 1px solid grey;
+      font-size: 0.9rem;
 
       &:focus {
         border: 1px solid lightblue;
         outline: none;
       }
+    }
+
+    & > textarea {
+      height: 5rem;
     }
 
     & > #file {
@@ -36,7 +42,16 @@ const StyledForm = styled.form`
 
   & > button {
     margin: 0.5rem 0;
-    padding: 0.25rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      background-color: #d9d9d9;
+    }
   }
 
   @media screen and (max-width: 500px) {
@@ -62,11 +77,13 @@ const StyledCloseIcon = styled(CloseIcon)`
     position: absolute;
     bottom: 10%;
     right: 10%;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.8);
 
     &:hover,
     &:active {
       background-color: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
     }
   }
 `;
@@ -136,7 +153,7 @@ function Form() {
 
       <label htmlFor="message">
         Message
-        <input
+        <textarea
           id="message"
           type="text"
           value={newPost.message}

@@ -137,7 +137,7 @@ const StyledPost = styled.div`
 
 function Post(props) {
   const { post } = props;
-  const { deletePost, setPostToEdit, like } = usePostContext();
+  const { deletePost, setPostToEdit, like, setVisibility } = usePostContext();
   return (
     <StyledPost url={post.selectedFile}>
       <div className="post_img">
@@ -145,7 +145,13 @@ function Post(props) {
           <span className="post_creator">{post.creator}</span>
           <span className="post_date">date</span>
         </div>
-        <div onClick={() => setPostToEdit(post)} className="post_dots">
+        <div
+          onClick={() => {
+            setPostToEdit(post);
+            setVisibility(true);
+          }}
+          className="post_dots"
+        >
           <div className="post_dot"></div>
           <div className="post_dot"></div>
           <div className="post_dot"></div>
