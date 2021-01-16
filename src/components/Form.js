@@ -136,9 +136,10 @@ function Form() {
   return (
     <StyledForm
       visibility={visibility}
-      onSubmit={(e) =>
-        postToEdit === null ? createPost(newPost, e) : updatePost(newPost, e)
-      }
+      onSubmit={(e) => {
+        postToEdit === null ? createPost(newPost, e) : updatePost(newPost, e);
+        setVisibility(false);
+      }}
     >
       <StyledCloseIcon fontSize="large" onClick={() => setVisibility(false)} />
       <label htmlFor="title">
@@ -147,6 +148,7 @@ function Form() {
           id="title"
           type="text"
           value={newPost.title}
+          required
           onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
         />
       </label>
@@ -157,6 +159,7 @@ function Form() {
           id="message"
           type="text"
           value={newPost.message}
+          required
           onChange={(e) => setNewPost({ ...newPost, message: e.target.value })}
         />
       </label>
@@ -167,6 +170,7 @@ function Form() {
           id="creator"
           type="text"
           value={newPost.creator}
+          required
           onChange={(e) => setNewPost({ ...newPost, creator: e.target.value })}
         />
       </label>
@@ -177,6 +181,7 @@ function Form() {
           id="tags"
           type="text"
           value={newPost.tags}
+          required
           onChange={(e) => setNewPost({ ...newPost, tags: e.target.value })}
         />
       </label>
@@ -188,6 +193,7 @@ function Form() {
           type="url"
           multiple={false}
           value={newPost.selectedFile}
+          required
           onChange={(e) =>
             setNewPost({
               ...newPost,
