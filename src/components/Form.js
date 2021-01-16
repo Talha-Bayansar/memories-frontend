@@ -47,7 +47,25 @@ function Form() {
     tags: "",
     file: "",
   });
-  const { createPost, posts } = usePostContext();
+  const {
+    createPost,
+    posts,
+    postToEdit,
+    setPostToEdit,
+    updatePost,
+  } = usePostContext();
+
+  const clear = (e) => {
+    e.preventDefault();
+    setPostToEdit(null);
+    setNewPost({
+      title: "",
+      message: "",
+      creator: "",
+      tags: "",
+      selectedFile: "",
+    });
+  };
 
   useEffect(() => {
     setNewPost({
@@ -59,8 +77,17 @@ function Form() {
     });
   }, [posts]);
 
+  useEffect(() => {
+    if (postToEdit !== null) setNewPost(postToEdit);
+    console.log(postToEdit);
+  }, [postToEdit]);
+
   return (
-    <StyledForm onSubmit={(e) => createPost(newPost, e)}>
+    <StyledForm
+      onSubmit={(e) =>
+        postToEdit === null ? createPost(newPost, e) : updatePost(newPost, e)
+      }
+    >
       <label htmlFor="title">
         Title
         <input
@@ -117,7 +144,8 @@ function Form() {
         />
       </label>
 
-      <button type="submit">Create</button>
+      <button type="submit">Submit</button>
+      <button onClick={(e) => clear(e)}>Clear</button>
     </StyledForm>
   );
 }

@@ -8,7 +8,7 @@ const StyledPost = styled.div`
   display: flex;
   flex-direction: column;
   width: 250px;
-  height: 300px;
+  height: 350px;
   background-color: #e6e4e4;
   margin: 1rem;
   border-radius: 10px;
@@ -47,11 +47,40 @@ const StyledPost = styled.div`
       width: 100%;
       border-radius: 10px 10px 0 0;
     }
+
+    & > .post_dots {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      top: 0;
+      right: 0;
+      margin: 1rem;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+
+      & > .post_dot {
+        display: block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: white;
+        margin: 1px;
+      }
+    }
   }
 
   & > .post_data {
     display: flex;
     flex-direction: column;
+    height: 50%;
     padding: 0.5rem 1rem;
 
     & > .post_title {
@@ -62,6 +91,10 @@ const StyledPost = styled.div`
     & > .post_message {
       overflow: scroll;
       font-size: 0.75rem;
+      /* height: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; */
     }
 
     & > .post_tags {
@@ -84,6 +117,12 @@ const StyledPost = styled.div`
       font-size: 0.9rem;
       font-weight: bold;
       text-transform: uppercase;
+      border-radius: 10px;
+      padding: 3px 6px;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
     }
 
     & > .like {
@@ -98,13 +137,18 @@ const StyledPost = styled.div`
 
 function Post(props) {
   const { post } = props;
-  const { deletePost } = usePostContext();
+  const { deletePost, setPostToEdit, like } = usePostContext();
   return (
     <StyledPost url={post.selectedFile}>
       <div className="post_img">
         <div className="post_img_data">
           <span className="post_creator">{post.creator}</span>
           <span className="post_date">date</span>
+        </div>
+        <div onClick={() => setPostToEdit(post)} className="post_dots">
+          <div className="post_dot"></div>
+          <div className="post_dot"></div>
+          <div className="post_dot"></div>
         </div>
       </div>
       <div className="post_data">
@@ -113,7 +157,7 @@ function Post(props) {
         <p className="post_message">{post.message}</p>
       </div>
       <div className="post_buttons">
-        <button className="like post_button">
+        <button onClick={() => like(post)} className="like post_button">
           <ThumbUpAltIcon /> Like {post.likeCount}
         </button>
         <button onClick={() => deletePost(post)} className="delete post_button">

@@ -10,6 +10,7 @@ const PostContext = createContext();
 
 export function PostProvider(props) {
   const [posts, setPosts] = useState([]);
+  const [postToEdit, setPostToEdit] = useState(null);
 
   const getPosts = async () => {
     const response = await fetch(`${process.env.REACT_APP_URL}/posts`);
@@ -21,6 +22,7 @@ export function PostProvider(props) {
 
   const createPost = async (post, e) => {
     e.preventDefault();
+    console.log("create");
     console.log(post);
     const fetchOptions = {
       method: "POST",
@@ -44,14 +46,48 @@ export function PostProvider(props) {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(post),
     };
     const response = await fetch(
-      `${process.env.REACT_APP_URL}/posts`,
+      `${process.env.REACT_APP_URL}/posts/${post._id}`,
       fetchOptions
     );
     const body = await response.json();
     console.log(body);
+    setPosts(body);
+  };
+
+  const updatePost = async (post, e) => {
+    e.preventDefault();
+    console.log("update");
+    const fetchOptions = {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(post),
+    };
+    const response = await fetch(
+      `${process.env.REACT_APP_URL}/posts/${post._id}`,
+      fetchOptions
+    );
+    const body = await response.json();
+    console.log(post);
+    setPosts(body);
+    setPostToEdit(null);
+  };
+
+  const like = async (post) => {
+    const fetchOptions = {
+      method: "PUT",
+      headers: {
+        "Conntent-type": "application/json",
+      },
+    };
+    const response = await fetch(
+      `${process.env.REACT_APP_URL}/posts/like/${post._id}`,
+      fetchOptions
+    );
+    const body = await response.json();
     setPosts(body);
   };
 
@@ -60,12 +96,28 @@ export function PostProvider(props) {
     console.log(posts);
   }, []);
 
-  const api = useMemo(() => ({ posts, setPosts, createPost, deletePost }), [
-    posts,
-    setPosts,
-    createPost,
-    deletePost,
-  ]);
+  const api = useMemo(
+    () => ({
+      posts,
+      setPosts,
+      postToEdit,
+      setPostToEdit,
+      createPost,
+      updatePost,
+      deletePost,
+      like,
+    }),
+    [
+      posts,
+      setPosts,
+      postToEdit,
+      setPostToEdit,
+      createPost,
+      updatePost,
+      deletePost,
+      like,
+    ]
+  );
 
   return (
     <PostContext.Provider value={api}>{props.children}</PostContext.Provider>
