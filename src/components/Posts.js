@@ -9,6 +9,10 @@ const StyledPosts = styled.div`
   flex-wrap: wrap;
   width: 100%;
   margin-right: 1rem;
+
+  @media screen and (max-width: 500px) {
+    margin: unset;
+  }
 `;
 
 function Posts() {
