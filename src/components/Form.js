@@ -53,6 +53,12 @@ const StyledForm = styled.form`
     }
   }
 
+  .file {
+    border: none;
+    padding-left: unset;
+    padding-right: unset;
+  }
+
   @media screen and (max-width: 500px) {
     position: fixed;
     top: 0;
@@ -132,6 +138,10 @@ function Form() {
     console.log(postToEdit);
   }, [postToEdit]);
 
+  const phone = /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
+    navigator.userAgent
+  );
+
   return (
     <StyledForm
       visibility={visibility}
@@ -187,9 +197,7 @@ function Form() {
 
       <label htmlFor="url">
         File
-        {!/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
-          navigator.userAgent
-        ) ? (
+        {!phone ? (
           <input
             id="url"
             type="url"
@@ -205,8 +213,15 @@ function Form() {
           />
         ) : (
           <input
+            className="file"
             type="file"
-            onChange={(e) => console.log(e.target.value)}
+            value={newPost.selectedFile}
+            onChange={(e) =>
+              setNewPost({
+                ...newPost,
+                selectedFile: e.target.value,
+              })
+            }
             accept="image/*"
             capture
           />
