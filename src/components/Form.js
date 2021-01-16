@@ -219,7 +219,9 @@ function Form() {
             onChange={(e) => {
               setNewPost({
                 ...newPost,
-                selectedFile: window.URL.createObjectURL(e.target.files[0]),
+                selectedFile: window.URL.createObjectURL(
+                  e.target.files[0]
+                ).toString(),
               });
             }}
             accept="image/*"
