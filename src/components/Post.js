@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -15,7 +15,7 @@ const StyledPost = styled.div`
 
   & > .post_img {
     position: relative;
-    background: url(${(props) => props.url}) center no-repeat;
+    background: ${(props) => `url(${props.url})`} center no-repeat;
     background-size: 100%;
     width: 100%;
     height: 50%;

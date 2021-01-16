@@ -187,19 +187,30 @@ function Form() {
 
       <label htmlFor="url">
         File
-        <input
-          id="url"
-          type="url"
-          multiple={false}
-          value={newPost.selectedFile}
-          required
-          onChange={(e) =>
-            setNewPost({
-              ...newPost,
-              selectedFile: e.target.value,
-            })
-          }
-        />
+        {!/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
+          navigator.userAgent
+        ) ? (
+          <input
+            id="url"
+            type="url"
+            multiple={false}
+            value={newPost.selectedFile}
+            required
+            onChange={(e) =>
+              setNewPost({
+                ...newPost,
+                selectedFile: e.target.value,
+              })
+            }
+          />
+        ) : (
+          <input
+            type="file"
+            onChange={(e) => console.log(e.target.value)}
+            accept="image/*"
+            capture
+          />
+        )}
       </label>
 
       <button type="submit">Submit</button>
