@@ -12,13 +12,17 @@ export function PostProvider(props) {
   const [posts, setPosts] = useState([]);
   const [postToEdit, setPostToEdit] = useState(null);
   const [visibility, setVisibility] = useState(false);
+  const [message, setMessage] = useState();
 
   const getPosts = async () => {
+    setMessage("Loading...");
     const response = await fetch(`${process.env.REACT_APP_URL}/posts`);
     const body = await response.json();
     console.log(response);
     console.log(body);
     setPosts(body);
+    if (body.length <= 0)
+      setMessage("There are no posts available at the moment.");
   };
 
   const createPost = async (post, e) => {
@@ -107,6 +111,8 @@ export function PostProvider(props) {
       like,
       visibility,
       setVisibility,
+      message,
+      setMessage,
     }),
     [
       posts,
@@ -119,6 +125,8 @@ export function PostProvider(props) {
       like,
       visibility,
       setVisibility,
+      message,
+      setMessage,
     ]
   );
 

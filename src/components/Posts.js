@@ -16,13 +16,13 @@ const StyledPosts = styled.div`
 `;
 
 function Posts() {
-  const { posts } = usePostContext();
+  const { posts, message } = usePostContext();
   return (
     <StyledPosts>
       {posts.length !== 0 ? (
         posts.map((p) => <Post key={p._id} post={p} />)
       ) : (
-        <span>There are no posts available at the moment</span>
+        <span>{message}</span>
       )}
     </StyledPosts>
   );
