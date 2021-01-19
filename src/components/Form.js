@@ -12,6 +12,11 @@ const StyledForm = styled.form`
   width: 300px;
   padding: 1rem;
 
+  #filebase > input {
+    border: none;
+    padding-left: 0;
+  }
+
   & > label {
     margin: 0.5rem 0;
     display: flex;
@@ -62,7 +67,7 @@ const StyledForm = styled.form`
     height: 100vh;
     max-width: unset;
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 7rem;
+    padding: 1rem 3rem;
     color: white;
   }
 `;
@@ -186,7 +191,7 @@ function Form() {
         />
       </label>
 
-      <label htmlFor="file">
+      <label id="filebase" htmlFor="file">
         File
         <FileBase
           type="file"
@@ -194,6 +199,7 @@ function Form() {
           onDone={({ base64 }) =>
             setNewPost({ ...newPost, selectedFile: base64 })
           }
+          capture
         />
       </label>
 
