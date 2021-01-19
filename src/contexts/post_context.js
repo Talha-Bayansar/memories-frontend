@@ -23,12 +23,10 @@ export function PostProvider(props) {
 
   const createPost = async (post, e) => {
     e.preventDefault();
-    console.log("create");
-    console.log(post);
     const fetchOptions = {
       method: "POST",
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(post),
     };

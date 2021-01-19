@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { usePostContext } from "../contexts/post_context";
 import CloseIcon from "@material-ui/icons/Close";
+import FileBase from "react-file-base64";
 
 const StyledForm = styled.form`
   display: flex;
@@ -185,19 +186,13 @@ function Form() {
         />
       </label>
 
-      <label htmlFor="url">
+      <label htmlFor="file">
         File
-        <input
-          id="url"
-          type="url"
+        <FileBase
+          type="file"
           multiple={false}
-          value={newPost.selectedFile}
-          required
-          onChange={(e) =>
-            setNewPost({
-              ...newPost,
-              selectedFile: e.target.value,
-            })
+          onDone={({ base64 }) =>
+            setNewPost({ ...newPost, selectedFile: base64 })
           }
         />
       </label>
