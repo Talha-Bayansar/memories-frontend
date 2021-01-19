@@ -93,7 +93,7 @@ function Form() {
     message: "",
     creator: "",
     tags: "",
-    file: "",
+    selectedFile: "",
   });
   const {
     createPost,
